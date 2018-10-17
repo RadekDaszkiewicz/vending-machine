@@ -23,4 +23,9 @@ public class OrderServiceImpl implements OrderService {
 		}
 		repository.add(p1);
 	}
+
+	@Override
+	public List<Product> getAllProducts() {
+		return repository;
+	}
 }

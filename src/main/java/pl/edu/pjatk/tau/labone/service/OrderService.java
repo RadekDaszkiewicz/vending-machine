@@ -8,4 +8,6 @@ public interface OrderService {
 	List<Product> getRepository();
 
 	void createProduct(Product p);
+
+	List<Product> getAllProducts();
 }
