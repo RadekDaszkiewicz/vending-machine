@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
+import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
 import static org.junit.Assert.assertEquals;
 
 public class OrderServiceTest {
@@ -32,4 +33,8 @@ public class OrderServiceTest {
 		assertEquals(orderService.getAllProducts().size(), 3);
 	}
 
+	@Test(expected = ProductNotFoundException.class)
+	public void testUnexistingProductRead() {
+		orderService.getProductById(99);
+	}
 }

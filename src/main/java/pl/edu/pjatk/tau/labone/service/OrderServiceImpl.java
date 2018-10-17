@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
+import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -27,5 +28,15 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Product> getAllProducts() {
 		return repository;
+	}
+
+	@Override
+	public Product getProductById(int id) {
+		for (Product p : repository) {
+			if (p.getId() == id) {
+				return p;
+			}
+		}
+		throw new ProductNotFoundException();
 	}
 }

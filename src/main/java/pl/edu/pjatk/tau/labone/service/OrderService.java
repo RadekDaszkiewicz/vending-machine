@@ -10,4 +10,6 @@ public interface OrderService {
 	void createProduct(Product p);
 
 	List<Product> getAllProducts();
+
+	Product getProductById(int i);
 }
