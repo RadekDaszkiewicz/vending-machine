@@ -1,6 +1,7 @@
 package pl.edu.pjatk.tau.labone.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
@@ -45,5 +46,15 @@ public class OrderServiceImpl implements OrderService {
 		Product p1 = getProductById(p.getId());
 		p1.setName(p.getName());
 		p1.setPrice(p.getPrice());
+	}
+
+	@Override
+	public void deleteProduct(int i) {
+		for (Iterator<Product> iter = repository.listIterator(); iter.hasNext(); ) {
+			Product p = iter.next();
+			if (p.getId() == i) {
+				iter.remove();
+			}
+		}
 	}
 }

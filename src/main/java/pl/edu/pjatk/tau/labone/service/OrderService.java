@@ -14,4 +14,6 @@ public interface OrderService {
 	Product getProductById(int i);
 
 	void updateProduct(Product p);
+
+	void deleteProduct(int i);
 }

@@ -43,4 +43,10 @@ public class OrderServiceTest {
 		orderService.updateProduct(new Product(3, "Zmieniony produkt", BigDecimal.valueOf(100.0)));
 		assertEquals(new Product(3, "Zmieniony produkt", BigDecimal.valueOf(100.0)), orderService.getProductById(3));
 	}
+
+	@Test(expected = ProductNotFoundException.class)
+	public void testDeleteProduct() {
+		orderService.deleteProduct(2);
+		orderService.getProductById(2);
+	}
 }
