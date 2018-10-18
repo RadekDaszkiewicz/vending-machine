@@ -34,7 +34,13 @@ public class OrderServiceTest {
 	}
 
 	@Test(expected = ProductNotFoundException.class)
-	public void testUnexistingProductRead() {
+	public void testNonexistentProductRead() {
 		orderService.getProductById(99);
+	}
+
+	@Test
+	public void testUpdateProduct() {
+		orderService.updateProduct(new Product(3, "Zmieniony produkt", BigDecimal.valueOf(100.0)));
+		assertEquals(new Product(3, "Zmieniony produkt", BigDecimal.valueOf(100.0)), orderService.getProductById(3));
 	}
 }

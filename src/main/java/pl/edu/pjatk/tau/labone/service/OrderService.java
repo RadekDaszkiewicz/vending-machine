@@ -12,4 +12,6 @@ public interface OrderService {
 	List<Product> getAllProducts();
 
 	Product getProductById(int i);
+
+	void updateProduct(Product p);
 }

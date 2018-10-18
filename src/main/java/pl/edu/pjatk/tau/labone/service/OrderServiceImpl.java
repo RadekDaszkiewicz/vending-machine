@@ -39,4 +39,11 @@ public class OrderServiceImpl implements OrderService {
 		}
 		throw new ProductNotFoundException();
 	}
+
+	@Override
+	public void updateProduct(Product p) {
+		Product p1 = getProductById(p.getId());
+		p1.setName(p.getName());
+		p1.setPrice(p.getPrice());
+	}
 }
