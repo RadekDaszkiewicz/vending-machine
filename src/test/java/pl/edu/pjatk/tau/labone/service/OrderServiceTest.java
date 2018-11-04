@@ -83,4 +83,13 @@ public class OrderServiceTest {
         assertEquals(mockedDate, p.getUpdateDate());
     }
 
+    @Test
+    public void testUpdateProductWithoutDate() {
+        orderService.setCreateUpdateDate(false);
+        Product p = orderService.getProductById(3);
+        p.setPrice(BigDecimal.valueOf(30));
+        orderService.updateProduct(p);
+        assertNull(p.getUpdateDate());
+    }
+
 }
