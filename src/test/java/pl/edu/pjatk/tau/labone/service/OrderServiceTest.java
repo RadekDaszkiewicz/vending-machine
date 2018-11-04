@@ -5,6 +5,8 @@ import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
 import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -66,6 +68,8 @@ public class OrderServiceTest {
 
     @Test
     public void testCreateProductWithoutDate() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-21");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
         orderService.setCreateAddDate(false);
         Product p = new Product(5, "Produkt 5", BigDecimal.valueOf(5.0));
         orderService.createProduct(p);
@@ -85,6 +89,8 @@ public class OrderServiceTest {
 
     @Test
     public void testUpdateProductWithoutDate() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-20");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
         orderService.setCreateUpdateDate(false);
         Product p = orderService.getProductById(3);
         p.setPrice(BigDecimal.valueOf(30));
@@ -92,4 +98,37 @@ public class OrderServiceTest {
         assertNull(p.getUpdateDate());
     }
 
+    @Test
+    public void testReadProductDate() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-02");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
+        Product p = orderService.getProductById(3);
+        assertEquals(mockedDate, p.getReadDate());
+    }
+
+    @Test
+    public void testReadProductWithoutDate() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-02");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
+        orderService.setCreateReadDate(false);
+        Product p = orderService.getProductById(3);
+        assertNull(p.getReadDate());
+    }
+
+    @Test
+    public void testReadAllProductsDates() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-02");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
+        List<Product> products = orderService.getAllProducts();
+        products.forEach(product -> assertEquals(mockedDate, product.getReadDate()));
+    }
+
+    @Test
+    public void testReadAllProductsWithoutDates() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-02");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
+        orderService.setCreateReadDate(false);
+        List<Product> products = orderService.getAllProducts();
+        products.forEach(product -> assertNull(product.getReadDate()));
+    }
 }

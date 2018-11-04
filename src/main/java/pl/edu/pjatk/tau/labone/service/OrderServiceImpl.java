@@ -40,6 +40,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Product> getAllProducts() {
+        repository.forEach(p -> {
+            if (createReadDate) {
+                p.setReadDate(dateService.getDate());
+            }
+        });
         return repository;
     }
 
@@ -47,6 +52,9 @@ public class OrderServiceImpl implements OrderService {
     public Product getProductById(int id) {
         for (Product p : repository) {
             if (p.getId() == id) {
+                if (createReadDate){
+                    p.setReadDate(dateService.getDate());
+                }
                 return p;
             }
         }
@@ -58,7 +66,9 @@ public class OrderServiceImpl implements OrderService {
         Product p1 = getProductById(p.getId());
         p1.setName(p.getName());
         p1.setPrice(p.getPrice());
-        p1.setUpdateDate(dateService.getDate());
+        if (createUpdateDate) {
+            p1.setUpdateDate(dateService.getDate());
+        }
     }
 
     @Override
