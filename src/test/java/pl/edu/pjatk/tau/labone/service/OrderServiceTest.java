@@ -64,4 +64,13 @@ public class OrderServiceTest {
         assertEquals(p.getAddDate(), mockedDate);
     }
 
+    @Test
+    public void testCreateProductWithoutDate() {
+        orderService.setCreateAddDate(false);
+        Product p = new Product(5, "Produkt 5", BigDecimal.valueOf(5.0));
+        orderService.createProduct(p);
+        p = orderService.getProductById(5);
+        assertNull(p.getAddDate());
+    }
+
 }
