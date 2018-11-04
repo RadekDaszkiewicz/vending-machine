@@ -61,7 +61,7 @@ public class OrderServiceTest {
         Product p = new Product(4, "Produkt 4", BigDecimal.valueOf(4.0));
         orderService.createProduct(p);
         p = orderService.getProductById(4);
-        assertEquals(p.getAddDate(), mockedDate);
+        assertEquals(mockedDate, p.getAddDate());
     }
 
     @Test
@@ -71,6 +71,16 @@ public class OrderServiceTest {
         orderService.createProduct(p);
         p = orderService.getProductById(5);
         assertNull(p.getAddDate());
+    }
+
+    @Test
+    public void testUpdateProductDate() {
+        LocalDate mockedDate = LocalDate.parse("2018-10-20");
+        when(dateServiceMock.getDate()).thenReturn(mockedDate);
+        Product p = orderService.getProductById(3);
+        p.setPrice(BigDecimal.valueOf(30));
+        orderService.updateProduct(p);
+        assertEquals(mockedDate, p.getUpdateDate());
     }
 
 }

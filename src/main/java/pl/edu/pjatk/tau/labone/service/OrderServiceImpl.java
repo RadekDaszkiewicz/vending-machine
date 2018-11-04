@@ -58,6 +58,7 @@ public class OrderServiceImpl implements OrderService {
         Product p1 = getProductById(p.getId());
         p1.setName(p.getName());
         p1.setPrice(p.getPrice());
+        p1.setUpdateDate(dateService.getDate());
     }
 
     @Override
