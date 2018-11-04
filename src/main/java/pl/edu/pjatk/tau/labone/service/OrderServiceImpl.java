@@ -3,58 +3,82 @@ package pl.edu.pjatk.tau.labone.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
 import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
 
 public class OrderServiceImpl implements OrderService {
 
-	private List<Product> repository = new ArrayList<>();
+    private List<Product> repository = new ArrayList<>();
+    private DateService dateService;
+    private boolean createAddDate = true;
+    private boolean createUpdateDate = true;
+    private boolean createReadDate = true;
 
-	@Override
-	public List<Product> getRepository() {
-		return this.repository;
-	}
+    public OrderServiceImpl(DateService dateService) {
+        this.dateService = dateService;
+    }
 
-	@Override
-	public void createProduct(Product p1) {
-		for (Product p : repository) {
-			if (p.getId() == p1.getId()) {
-				throw new DuplicatedIdException();
-			}
-		}
-		repository.add(p1);
-	}
+    @Override
+    public List<Product> getRepository() {
+        return this.repository;
+    }
 
-	@Override
-	public List<Product> getAllProducts() {
-		return repository;
-	}
+    @Override
+    public void createProduct(Product p1) {
+        for (Product p : repository) {
+            if (p.getId() == p1.getId()) {
+                throw new DuplicatedIdException();
+            }
+        }
+        if (createAddDate) {
+            p1.setAddDate(dateService.getDate());
+        }
+        repository.add(p1);
+    }
 
-	@Override
-	public Product getProductById(int id) {
-		for (Product p : repository) {
-			if (p.getId() == id) {
-				return p;
-			}
-		}
-		throw new ProductNotFoundException();
-	}
+    @Override
+    public List<Product> getAllProducts() {
+        return repository;
+    }
 
-	@Override
-	public void updateProduct(Product p) {
-		Product p1 = getProductById(p.getId());
-		p1.setName(p.getName());
-		p1.setPrice(p.getPrice());
-	}
+    @Override
+    public Product getProductById(int id) {
+        for (Product p : repository) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        throw new ProductNotFoundException();
+    }
 
-	@Override
-	public void deleteProduct(int i) {
-		for (Iterator<Product> iter = repository.listIterator(); iter.hasNext(); ) {
-			Product p = iter.next();
-			if (p.getId() == i) {
-				iter.remove();
-			}
-		}
-	}
+    @Override
+    public void updateProduct(Product p) {
+        Product p1 = getProductById(p.getId());
+        p1.setName(p.getName());
+        p1.setPrice(p.getPrice());
+    }
+
+    @Override
+    public void deleteProduct(int i) {
+        for (Iterator<Product> iter = repository.listIterator(); iter.hasNext(); ) {
+            Product p = iter.next();
+            if (p.getId() == i) {
+                iter.remove();
+            }
+        }
+    }
+
+    public void setCreateAddDate(boolean createAddDate) {
+        this.createAddDate = createAddDate;
+    }
+
+    public void setCreateUpdateDate(boolean createUpdateDate) {
+        this.createUpdateDate = createUpdateDate;
+    }
+
+    public void setCreateReadDate(boolean createReadDate) {
+        this.createReadDate = createReadDate;
+    }
 }

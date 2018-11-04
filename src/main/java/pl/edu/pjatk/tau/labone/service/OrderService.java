@@ -16,4 +16,10 @@ public interface OrderService {
 	void updateProduct(Product p);
 
 	void deleteProduct(int i);
+
+	void setCreateAddDate(boolean createAddDate);
+
+	void setCreateUpdateDate(boolean createUpdateDate);
+
+	void setCreateReadDate(boolean createReadDate);
 }
