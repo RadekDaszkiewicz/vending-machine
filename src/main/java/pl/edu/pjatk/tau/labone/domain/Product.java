@@ -16,6 +16,9 @@ public class Product {
     private LocalDate updateDate;
     private LocalDate readDate;
 
+    public Product() {
+    }
+
     public Product(int id, String name, BigDecimal price) {
         this.id = id;
         this.name = name;
