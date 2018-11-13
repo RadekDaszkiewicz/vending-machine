@@ -19,10 +19,18 @@ public class Product {
     public Product() {
     }
 
+    public Product(int id) {
+        this.id = id;
+    }
+
     public Product(int id, String name, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

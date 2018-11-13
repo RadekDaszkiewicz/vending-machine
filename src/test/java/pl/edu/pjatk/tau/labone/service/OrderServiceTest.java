@@ -1,16 +1,17 @@
 package pl.edu.pjatk.tau.labone.service;
 
-import pl.edu.pjatk.tau.labone.domain.Product;
-import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
-import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import pl.edu.pjatk.tau.labone.domain.Product;
+import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
+import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class OrderServiceTest {
 
