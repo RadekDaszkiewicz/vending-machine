@@ -23,6 +23,11 @@ public class Product {
         this.id = id;
     }
 
+    public Product(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Product(int id, String name, BigDecimal price) {
         this.id = id;
         this.name = name;

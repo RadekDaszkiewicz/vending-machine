@@ -1,6 +1,8 @@
 package pl.edu.pjatk.tau.labone.service;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,6 +14,7 @@ public class ProductStepdefs {
 	private Product product;
 	private String answer;
 	private OrderService orderService;
+	private List<Product> filteredProducts;
 	private int seq = 0;
 
 	@Given("^we have a new product$")
@@ -75,4 +78,18 @@ public class ProductStepdefs {
 		assertEquals(count, this.orderService.getAllProducts().size());
 	}
 
+	@Given("^we create product with id ([0-9]*) and name \"([^\"]*)\"$")
+	public void we_create_product_with_id_and_name(int id, String name) throws Exception {
+		this.product = new Product(id, name);
+	}
+
+	@When("^we search for product by regexp \"([^\"]*)\"$")
+	public void we_search_for_product_by_regexp(String regexp) throws Exception {
+		this.filteredProducts = this.orderService.getProductsByRegexp(regexp);
+	}
+
+	@Then("^the filtered list of products should count ([0-9]*)$")
+	public void the_filtered_list_of_products_should_count(int count) throws Exception {
+		assertEquals(count, this.filteredProducts.size());
+	}
 }

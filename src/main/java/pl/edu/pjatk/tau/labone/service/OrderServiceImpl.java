@@ -3,6 +3,7 @@ package pl.edu.pjatk.tau.labone.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
@@ -91,5 +92,12 @@ public class OrderServiceImpl implements OrderService {
 
     public void setCreateReadDate(boolean createReadDate) {
         this.createReadDate = createReadDate;
+    }
+
+    @Override
+    public List<Product> getProductsByRegexp(String regexp) {
+        return this.repository.stream()
+                .filter(p -> p.getName().matches(regexp))
+                .collect(Collectors.toList());
     }
 }

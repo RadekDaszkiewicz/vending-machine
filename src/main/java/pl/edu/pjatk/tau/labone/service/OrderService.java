@@ -22,4 +22,6 @@ public interface OrderService {
 	void setCreateUpdateDate(boolean createUpdateDate);
 
 	void setCreateReadDate(boolean createReadDate);
+
+	List<Product> getProductsByRegexp(String regexp);
 }
