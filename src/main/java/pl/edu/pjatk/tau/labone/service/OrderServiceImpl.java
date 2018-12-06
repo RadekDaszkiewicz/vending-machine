@@ -5,13 +5,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
 import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private List<Product> repository = new ArrayList<>();
+    @Autowired
     private DateService dateService;
     private boolean createAddDate = true;
     private boolean createUpdateDate = true;

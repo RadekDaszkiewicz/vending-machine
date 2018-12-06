@@ -1,6 +1,8 @@
 package pl.edu.pjatk.tau.labone.service;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 import pl.edu.pjatk.tau.labone.domain.Product;
 
 public interface OrderService {
