@@ -2,6 +2,7 @@ package pl.edu.pjatk.tau.labone.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import pl.edu.pjatk.tau.labone.domain.Product;
 
@@ -9,7 +10,7 @@ public interface OrderService {
 
 	List<Product> getRepository();
 
-	void createProduct(Product p);
+	int createProduct(Product p);
 
 	List<Product> getAllProducts();
 

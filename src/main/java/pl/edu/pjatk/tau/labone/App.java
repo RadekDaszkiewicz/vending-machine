@@ -1,11 +1,19 @@
-package pl.edu.pjatk.tau.labone;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class App {
-    public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
-    }
-}
+//package pl.edu.pjatk.tau.labone;
+//
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.context.annotation.ComponentScan;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+//
+////@SpringBootApplication
+////@Configuration
+//@EnableWebMvc
+//@EnableAutoConfiguration
+//@ComponentScan({"pl.edu.pjatk.tau.labone", "pl.edu.pjatk.tau.labone"})
+//public class App {
+//    public static void main(String[] args) {
+//        SpringApplication.run(App.class, args);
+//    }
+//}

@@ -1,5 +1,6 @@
 package pl.edu.pjatk.tau.labone.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,10 +11,13 @@ import org.springframework.stereotype.Component;
 import pl.edu.pjatk.tau.labone.domain.Product;
 import pl.edu.pjatk.tau.labone.exception.DuplicatedIdException;
 import pl.edu.pjatk.tau.labone.exception.ProductNotFoundException;
+import pl.edu.pjatk.tau.labone.repository.ProductRepository;
 
 @Component
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
+    ProductRepository productRepository;
     private List<Product> repository = new ArrayList<>();
     @Autowired
     private DateService dateService;
@@ -31,16 +35,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void createProduct(Product p1) {
-        for (Product p : repository) {
-            if (p.getId() == p1.getId()) {
-                throw new DuplicatedIdException();
-            }
-        }
-        if (createAddDate) {
-            p1.setAddDate(dateService.getDate());
-        }
-        repository.add(p1);
+    public int createProduct(Product p1) {
+        return this.productRepository.addProduct(p1);
     }
 
     @Override
@@ -55,13 +51,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Product getProductById(int id) {
-        for (Product p : repository) {
-            if (p.getId() == id) {
-                if (createReadDate){
-                    p.setReadDate(dateService.getDate());
-                }
-                return p;
-            }
+        Product p = null;
+        try {
+            p = this.productRepository.getProduct(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (p != null) {
+            return p;
         }
         throw new ProductNotFoundException();
     }

@@ -1,5 +1,6 @@
 package pl.edu.pjatk.tau.labone.repository;
 
+import org.springframework.stereotype.Repository;
 import pl.edu.pjatk.tau.labone.domain.Product;
 
 import java.sql.Connection;
