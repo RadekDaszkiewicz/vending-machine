@@ -1,13 +1,12 @@
-package pl.edu.pjatk.tau.labone.repository;
+package pl.edu.pjatk.tau.labone.service;
 
-import org.springframework.stereotype.Repository;
 import pl.edu.pjatk.tau.labone.domain.Product;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ProductRepository {
+public interface ProductService {
     Connection getConnection();
 
     void setConnection(Connection connection) throws SQLException;

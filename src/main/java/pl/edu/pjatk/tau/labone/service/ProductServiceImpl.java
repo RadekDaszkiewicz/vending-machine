@@ -1,19 +1,14 @@
-package pl.edu.pjatk.tau.labone.repository;
+package pl.edu.pjatk.tau.labone.service;
 
 import org.springframework.stereotype.Component;
 import pl.edu.pjatk.tau.labone.domain.Product;
-import pl.edu.pjatk.tau.labone.service.DateService;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 @Component
-public class ProductRepositoryImpl implements ProductRepository {
-
-//    private final DataSource dataSource;
-//    private final DateService dateService;
+public class ProductServiceImpl  implements ProductService {
     private Connection connection;
     private PreparedStatement addProductStmt;
     private PreparedStatement getAllProductsStmt;
@@ -22,20 +17,20 @@ public class ProductRepositoryImpl implements ProductRepository {
     private PreparedStatement updateProductStmt;
     private PreparedStatement deleteAllProductsStmt;
 
-//    public ProductRepositoryImpl(DataSource dataSource, DateService dateService) throws SQLException {
-//        this.dataSource = dataSource;
-//        this.dateService = dateService;
-//        if (!isDatabaseReady()) {
-//            createTables();
-//        }
-//        this.setConnection(this.dataSource.getConnection());
-//      }
-    public ProductRepositoryImpl(Connection connection) throws SQLException {
+    public ProductServiceImpl(Connection connection) throws SQLException {
+        this.connection = connection;
+        if (!isDatabaseReady()) {
+            createTables();
+        }
+        setConnection(connection);
+    }
+
+    public ProductServiceImpl() throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
         if (!isDatabaseReady()) {
             createTables();
         }
-        this.setConnection(this.connection);
+        setConnection(this.connection);
     }
 
     @Override

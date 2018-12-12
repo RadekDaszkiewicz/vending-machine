@@ -12,9 +12,6 @@ public class Product {
     private int id;
     private String name;
     private BigDecimal price;
-    private LocalDate addDate;
-    private LocalDate updateDate;
-    private LocalDate readDate;
 
     public Product() {
     }
@@ -58,30 +55,6 @@ public class Product {
         this.price = price;
     }
 
-    public LocalDate getAddDate() {
-        return addDate;
-    }
-
-    public void setAddDate(LocalDate addDate) {
-        this.addDate = addDate;
-    }
-
-    public LocalDate getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(LocalDate updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public LocalDate getReadDate() {
-        return readDate;
-    }
-
-    public void setReadDate(LocalDate readDate) {
-        this.readDate = readDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,26 +62,11 @@ public class Product {
         Product product = (Product) o;
         return id == product.id &&
                 Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price) &&
-                Objects.equals(addDate, product.addDate) &&
-                Objects.equals(updateDate, product.updateDate) &&
-                Objects.equals(readDate, product.readDate);
+                Objects.equals(price, product.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, addDate, updateDate, readDate);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", addDate=" + addDate +
-                ", updateDate=" + updateDate +
-                ", readDate=" + readDate +
-                '}';
+        return Objects.hash(id, name, price);
     }
 }
