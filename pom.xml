@@ -13,6 +13,13 @@
 		<spring.version>[4.3.18,)</spring.version>
 		<com.fasterxml.jackson.version>2.9.4</com.fasterxml.jackson.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>repository.spring.milestone</id>
+			<name>Spring Milestone Repository</name>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
