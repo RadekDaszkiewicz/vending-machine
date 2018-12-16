@@ -1,5 +1,6 @@
 package pl.edu.pjatk.tau.labone.domain;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -7,6 +8,7 @@ import java.util.Objects;
 /**
  * @author s14646
  */
+@Entity
 public class Product {
 
     private int id;
