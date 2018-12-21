@@ -1,14 +1,13 @@
 package pl.edu.pjatk.tau.labone.service;
 
-import pl.edu.pjatk.tau.labone.domain.Order;
-import pl.edu.pjatk.tau.labone.domain.Product;
-
 import java.util.Collection;
 import java.util.List;
+import pl.edu.pjatk.tau.labone.domain.Cart;
+import pl.edu.pjatk.tau.labone.domain.Product;
 
 public interface OrderManager {
 
-    void addProduct(Product p);
+    int createProduct(Product p);
 
     Collection<Product> getAllProducts();
 
@@ -18,13 +17,15 @@ public interface OrderManager {
 
     void updateProduct(Product p);
 
-    Integer addNewOrder(Order o);
+    Integer addNewOrder(Cart o);
 
-    void addProductToOrder(Product p, Order o);
+    void addProductToOrder(Product p, Cart o);
 
-    void removeProductFromOrder(Product p, Order o);
+    void removeProductFromOrder(Product p, Cart o);
 
-    Order getOrderById(Integer id);
+    Cart getOrderById(Integer id);
 
-    List<Order> getAllOrders();
+    List<Cart> getAllOrders();
+
+    void deleteOrder(Cart c);
 }

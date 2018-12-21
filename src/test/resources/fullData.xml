@@ -1,8 +1,15 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataset>
-  <CAR ID="3" MAKE="Fiat" MODEL="126p" SOLD="false"/>
-  <CAR ID="4" MAKE="Ford" MODEL="Mondeo" SOLD="true"/>
-  <PERSON ID="3" FIRSTNAME="Lolek" PIN="4321" REGISTRATIONDATE="2015-05-20"/>
-  <PERSON ID="4" FIRSTNAME="Bolek" PIN="1234" REGISTRATIONDATE="2015-05-20"/>
-  <PERSON_CAR CARS_ID="4" PERSON_ID="3"/>
-</dataset>
+<!--<?xml version='1.0' encoding='UTF-8'?>-->
+<!--<dataset>-->
+  <!--<CART ID="3"/>-->
+  <!--<CART ID="4"/>-->
+  <!--<PRODUCT ID="3" NAME="Pierwszy produkt" PRICE="1.11"/>-->
+  <!--<PRODUCT ID="4" NAME="Drugi produkt" PRICE="2.00"/>-->
+  <!--<PRODUCT ID="5" NAME="Gratis" PRICE="0.00"/>-->
+  <!--<PRODUCT ID="6" NAME="Produkt 6" PRICE="9.99"/>-->
+  <!--<PRODUCT ID="7" NAME="Produkt 7" PRICE="15.50"/>-->
+  <!--<CART_PRODUCT PRODUCT_ID="3" CART_ID="3"/>-->
+  <!--<CART_PRODUCT PRODUCT_ID="4" CART_ID="3"/>-->
+  <!--<CART_PRODUCT PRODUCT_ID="5" CART_ID="4"/>-->
+  <!--<CART_PRODUCT PRODUCT_ID="6" CART_ID="3"/>-->
+  <!--<CART_PRODUCT PRODUCT_ID="7" CART_ID="4"/>-->
+<!--</dataset>-->
