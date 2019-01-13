@@ -2,6 +2,8 @@ package pl.edu.pjatk.tau.labone.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,11 @@ public class OrderManagerImpl implements OrderManager {
     }
 
     public void removeProductFromOrder(Product p, Cart o) {
-//        o.getProducts().iterator().next() //todo
+        List<Product> updatedList = o.getProducts().stream()
+                .filter(p1 -> !p1.equals(p))
+                .collect(Collectors.toList());
+        o.setProducts(updatedList);
+        this.sessionFactory.getCurrentSession().update(o);
     }
 
     public Cart getOrderById(Integer id) {
@@ -71,5 +77,12 @@ public class OrderManagerImpl implements OrderManager {
     @Override
     public void deleteOrder(Cart c) {
         this.sessionFactory.getCurrentSession().delete(c);
+    }
+
+    @Override
+    public Collection<Product> findProductsByName(String name) {
+        Query q = this.sessionFactory.getCurrentSession().createQuery("select p from Product p where lower(p.name) like :name");
+        q.setParameter("name", "%" + name.toLowerCase() + "%");
+        return q.list();
     }
 }

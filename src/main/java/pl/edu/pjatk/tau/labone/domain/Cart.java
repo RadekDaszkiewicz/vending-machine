@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToMany(orphanRemoval = true)
     @JoinTable(
@@ -28,9 +28,11 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
     )
     private List<Product> products = new ArrayList<>();
-    @Transient
-    private BigDecimal value;
+    private BigDecimal value = BigDecimal.ZERO;
 
+    public Cart(Integer id) {
+        this.id = id;
+    }
     public Integer getId() {
         return id;
     }
@@ -47,13 +49,11 @@ public class Cart {
         this.products = products;
     }
 
-    public BigDecimal getValue() {
-        return Optional.ofNullable(this.products)
-                .orElse(Collections.emptyList())
-                .stream()
-                .filter(Objects::nonNull)
-                .map(Product::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
+    public BigDecimal getValue() {
+        return this.value;
+    }
 }

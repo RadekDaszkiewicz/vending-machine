@@ -12,15 +12,16 @@ import javax.persistence.Id;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String name;
     private BigDecimal price;
 
     public Product() {
     }
 
-    public Product(String name, BigDecimal price) {
+    public Product(Integer id, String name, BigDecimal price) {
+        this.id = id;
         this.name = name;
         this.price = price;
     }

@@ -28,4 +28,6 @@ public interface OrderManager {
     List<Cart> getAllOrders();
 
     void deleteOrder(Cart c);
+
+    Collection<Product> findProductsByName(String name);
 }
