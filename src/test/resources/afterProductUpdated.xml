@@ -6,7 +6,7 @@
   <PRODUCT ID="5" NAME="Gratis" PRICE="0.00"/>
   <PRODUCT ID="6" NAME="Produkt 6" PRICE="9.99"/>
   <PRODUCT ID="7" NAME="Produkt 7" PRICE="15.50"/>
-  <PRODUCT ID="8" NAME="Cośtam cośtam" PRICE="0.01"/>
+  <PRODUCT ID="8" NAME="Zmieniony produkt" PRICE="0.01"/>
   <CART_PRODUCT PRODUCT_ID="3" CART_ID="3"/>
   <CART_PRODUCT PRODUCT_ID="4" CART_ID="3"/>
   <CART_PRODUCT PRODUCT_ID="5" CART_ID="3"/>

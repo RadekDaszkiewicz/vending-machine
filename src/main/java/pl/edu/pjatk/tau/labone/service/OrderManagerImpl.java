@@ -2,8 +2,6 @@ package pl.edu.pjatk.tau.labone.service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,9 @@ public class OrderManagerImpl implements OrderManager {
     }
 
     public int createProduct(Product p) {
-        return (Integer) this.sessionFactory.getCurrentSession().save(p);
+        Integer id = (Integer) this.sessionFactory.getCurrentSession().save(p);
+        this.sessionFactory.getCurrentSession().flush();
+        return id;
     }
 
     public Collection<Product> getAllProducts() {
@@ -35,6 +35,7 @@ public class OrderManagerImpl implements OrderManager {
 
     public void deleteProduct(Product p) {
         this.sessionFactory.getCurrentSession().delete(p);
+        this.sessionFactory.getCurrentSession().flush();
     }
 
     public Product getProductById(Integer id) {
@@ -45,23 +46,25 @@ public class OrderManagerImpl implements OrderManager {
 
     public void updateProduct(Product p) {
         this.sessionFactory.getCurrentSession().update(p);
+        this.sessionFactory.getCurrentSession().flush();
     }
 
     public Integer addNewOrder(Cart o) {
-        return (Integer) this.sessionFactory.getCurrentSession().save(o);
+        Integer id = (Integer) this.sessionFactory.getCurrentSession().save(o);
+        this.sessionFactory.getCurrentSession().flush();
+        return id;
     }
 
     public void addProductToOrder(Product p, Cart o) {
         o.getProducts().add(p);
         this.sessionFactory.getCurrentSession().update(o);
+        this.sessionFactory.getCurrentSession().flush();
     }
 
     public void removeProductFromOrder(Product p, Cart o) {
-        List<Product> updatedList = o.getProducts().stream()
-                .filter(p1 -> !p1.equals(p))
-                .collect(Collectors.toList());
-        o.setProducts(updatedList);
+        o.getProducts().removeIf(p1 -> p1.getId() == p.getId());
         this.sessionFactory.getCurrentSession().update(o);
+        this.sessionFactory.getCurrentSession().flush();
     }
 
     public Cart getOrderById(Integer id) {

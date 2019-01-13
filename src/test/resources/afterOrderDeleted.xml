@@ -1,15 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <CART ID="3" VALUE="26.61"/>
   <PRODUCT ID="3" NAME="Pierwszy produkt" PRICE="1.11"/>
   <PRODUCT ID="4" NAME="Drugi produkt" PRICE="2.00"/>
   <PRODUCT ID="5" NAME="Gratis" PRICE="0.00"/>
   <PRODUCT ID="6" NAME="Produkt 6" PRICE="9.99"/>
   <PRODUCT ID="7" NAME="Produkt 7" PRICE="15.50"/>
   <PRODUCT ID="8" NAME="Cośtam cośtam" PRICE="0.01"/>
-  <CART_PRODUCT PRODUCT_ID="3" CART_ID="3"/>
-  <CART_PRODUCT PRODUCT_ID="4" CART_ID="3"/>
-  <CART_PRODUCT PRODUCT_ID="5" CART_ID="3"/>
-  <CART_PRODUCT PRODUCT_ID="6" CART_ID="3"/>
-  <CART_PRODUCT PRODUCT_ID="7" CART_ID="3"/>
 </dataset>
