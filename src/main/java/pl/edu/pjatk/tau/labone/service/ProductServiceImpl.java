@@ -45,7 +45,7 @@ public class ProductServiceImpl  implements ProductService {
     @Override
     public void setConnection(Connection connection) throws SQLException {
         this.connection = connection;
-        this.addProductStmt = connection.prepareStatement("INSERT INTO Product (name, price) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+        this.addProductStmt = connection.prepareStatement("INSERT INTO Product (id, name, price) VALUES (?, ?, ?)");
         this.deleteProductStmt = connection.prepareStatement("DELETE FROM Product where id = ?");
         this.deleteAllProductsStmt = connection.prepareStatement("DELETE FROM Product");
         this.getAllProductsStmt = connection.prepareStatement("SELECT id, name, price FROM Product ORDER BY id");
@@ -77,13 +77,10 @@ public class ProductServiceImpl  implements ProductService {
     public int addProduct(Product p) {
         int count = 0;
         try {
-            this.addProductStmt.setString(1, p.getName());
-            this.addProductStmt.setBigDecimal(2, p.getPrice());
+            this.addProductStmt.setInt(1, p.getId());
+            this.addProductStmt.setString(2, p.getName());
+            this.addProductStmt.setBigDecimal(3, p.getPrice());
             count = this.addProductStmt.executeUpdate();
-            ResultSet generatedKeys = this.addProductStmt.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                p.setId(generatedKeys.getInt(1));
-            }
         } catch (SQLException e) {
             throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
         }
