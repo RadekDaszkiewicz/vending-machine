@@ -1,0 +1,11 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1547981287241,10,addProductFromCSV,200,OK,Dodanie rekordów z CSV 1-1,text,true,,213,238,1,1,http://localhost:8080/products,10,0,2
+1547981287252,9,addProductFromCSV,200,OK,Dodanie rekordów z CSV 1-1,text,true,,210,235,1,1,http://localhost:8080/products,9,0,0
+1547981287261,7,addProductFromCSV,200,OK,Dodanie rekordów z CSV 1-1,text,true,,200,225,1,1,http://localhost:8080/products,7,0,0
+1547981287269,7,addProductFromCSV,200,OK,Dodanie rekordów z CSV 1-1,text,true,,205,230,1,1,http://localhost:8080/products,7,0,0
+1547981289453,1117,JDBC Request - DB connect,200,OK,DB connect 1-1,text,true,,11,0,1,1,null,1116,0,1116
+1547981290575,8,add product,200,OK,Thread Group 2-1,text,true,,213,238,1,1,http://localhost:8080/products,8,0,1
+1547981290584,4,get all products,200,OK,Thread Group 2-1,text,true,,508,123,1,1,http://localhost:8080/products,4,0,0
+1547981290589,4,update product,200,OK,Thread Group 2-1,text,true,,243,254,1,1,http://localhost:8080/products/1,4,0,0
+1547981290593,5,get product,200,OK,Thread Group 2-1,text,true,,243,125,1,1,http://localhost:8080/products/1,4,0,0
+1547981290598,5,delete product,200,OK,Thread Group 2-1,text,true,,166,211,1,1,http://localhost:8080/products/1,5,0,0
